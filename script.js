@@ -4,7 +4,6 @@ const words = ["rock", "paper", "scissors"];
 function computerPlay() {
   return words[Math.floor(Math.random() * words.length)];
 }
-// console.log(computerPlay());
 
 // Use prompt() to get input from the user.
 
@@ -13,6 +12,10 @@ function computerPlay() {
 // Write a function that plays a single round of Rock Paper Scissors. The function should take two parameters - the playerSelection and computerSelection - and then return a string that declares the winner of the round like so: "You Lose! Paper beats Rock"
 // Important note: you want to return the results of this function call, not console.log() them. You’re going to use what you return later on, so let’s test this function by using console.log to see the results:
 function playRound(playerSelection, computerSelection) {
+  playerSelection = "rock";
+  computerSelection = computerPlay();
+  console.log(playerSelection, computerSelection);
+
   if (playerSelection === computerSelection) {
     return "Tie!";
   } else if (
@@ -26,12 +29,6 @@ function playRound(playerSelection, computerSelection) {
   }
 }
 
-const playerSelection = "rock";
-console.log(playerSelection);
-const computerSelection = computerPlay();
-console.log(computerSelection);
-console.log(playRound(playerSelection, computerSelection));
-
 // Make your function’s playerSelection parameter case-insensitive (so users can input rock, ROCK, RocK or any other variation).
 
 // -------------> code here
@@ -41,7 +38,7 @@ console.log(playRound(playerSelection, computerSelection));
 // At this point you should be using console.log() to display the results of each round and the winner at the end.
 function game() {
   for (let i = 0; i < 5; i++) {
-    playRound();
+    console.log(playRound());
   }
 }
 game();
