@@ -11,17 +11,30 @@ function computerPlay() {
 }
 
 // Make your function’s playerSelection parameter case-insensitive (so users can input rock, ROCK, RocK or any other variation).
-
-// -------------> code here
-
 // Use prompt() to get input from the user.
-
-// -------------> code here
+function userPlay() {
+  let input = prompt("Please type Rock, Paper or Scissors:");
+  // case-insensitive input.
+  input = input.toLowerCase(); // input to lover case
+  let check = validateInput(input); // connect with validateInput function
+  while (check == false) {
+    input = prompt(
+      "Type Rock, Paper or Scissors. Spelling needs to be exact, but capitilization doesnt matter"
+    );
+    input = input.toLowerCase();
+    check = validateInput(input); // check becomes true so while loop false brakes down.
+  }
+  return input;
+}
+// check if input text is same as global variable. The includes() method determines whether an array includes a certain element, returning true or false as appropriate.
+function validateInput(word) {
+  return words.includes(word);
+}
 
 // Write a function that plays a single round of Rock Paper Scissors. The function should take two parameters - the playerSelection and computerSelection - and then return a string that declares the winner of the round like so: "You Lose! Paper beats Rock"
 // Important note: you want to return the results of this function call, not console.log() them. You’re going to use what you return later on, so let’s test this function by using console.log to see the results:
 function playRound(playerSelection, computerSelection) {
-  playerSelection = "rock";
+  playerSelection = userPlay();
   computerSelection = computerPlay();
   console.log("player: " + playerSelection, ", computer: " + computerSelection);
 
