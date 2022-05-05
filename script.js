@@ -16,7 +16,6 @@ const startGame = () => {
     match.classList.add("fadeIn");
   });
 };
-
 startGame();
 
 // Your game is going to play against the computer, so begin with a function called computerPlay that will randomly return either ‘Rock’, ‘Paper’ or ‘Scissors’.
@@ -27,44 +26,65 @@ function computerPlay() {
 // Make your function’s playerSelection parameter case-insensitive (so users can input rock, ROCK, RocK or any other variation).
 // Use prompt() to get input from the user.
 function userPlay() {
-  let input = prompt("Please type Rock, Paper or Scissors:");
-  // case-insensitive input.
-  input = input.toLowerCase(); // input to lover case
-  let check = validateInput(input); // connect with validateInput function
-  while (check == false) {
-    input = prompt(
-      "Type Rock, Paper or Scissors. Spelling needs to be exact, but capitilization doesnt matter"
-    );
-    input = input.toLowerCase();
-    check = validateInput(input); // check becomes true so while loop false brakes down.
-  }
-  return input;
+  // let input = prompt("Please type Rock, Paper or Scissors:");
+  // // case-insensitive input.
+  // input = input.toLowerCase(); // input to lover case
+  // let check = validateInput(input); // connect with validateInput function
+  // while (check == false) {
+  //   input = prompt(
+  //     "Type Rock, Paper or Scissors. Spelling needs to be exact, but capitilization doesnt matter"
+  //   );
+  //   input = input.toLowerCase();
+  //   check = validateInput(input); // check becomes true so while loop false brakes down.
+  // }
+  // return input;
 }
 // check if input text is same as global variable. The includes() method determines whether an array includes a certain element, returning true or false as appropriate.
-function validateInput(word) {
-  return words.includes(word);
-}
+// function validateInput(word) {
+//   return words.includes(word);
+// }
 
 // Write a function that plays a single round of Rock Paper Scissors. The function should take two parameters - the playerSelection and computerSelection - and then return a string that declares the winner of the round like so: "You Lose! Paper beats Rock"
 // Important note: you want to return the results of this function call, not console.log() them. You’re going to use what you return later on, so let’s test this function by using console.log to see the results:
 function playRound(playerSelection, computerSelection) {
-  playerSelection = userPlay();
-  computerSelection = computerPlay();
-  console.log("player: " + playerSelection, ", computer: " + computerSelection);
+  // playerSelection = userPlay();
+  // computerSelection = computerPlay();
+  // console.log("player: " + playerSelection, ", computer: " + computerSelection);
+  const options = document.querySelectorAll(".options button");
+  const playerHand = document.querySelector(".player-hand");
+  const computerHand = document.querySelector(".computer-hand");
 
-  if (playerSelection === computerSelection) {
-    return "Tie!";
-  } else if (
-    (playerSelection === "rock" && computerSelection === "scissors") ||
-    (playerSelection === "paper" && computerSelection === "rock") ||
-    (playerSelection === "scissors" && computerSelection === "paper")
-  ) {
-    playerScore++;
-    return "Player Wins!" + " total: " + playerScore + " times";
-  } else {
-    computerScore++;
-    return "Computer Wins!" + " total: " + computerScore + " times";
-  }
+  // Create three buttons, one for each selection. Add an event listener to the buttons that call your playRound function with the correct playerSelection every time a button is clicked. (you can keep the console.logs for this step)
+  options.forEach((option) => {
+    option.addEventListener("click", function () {
+      // console.log(this);
+      computerSelection = computerPlay();
+      console.log(computerSelection);
+      //Update Images
+      playerHand.src = `./assets/${this.textContent}.png`;
+      computerHand.src = `./assets/${computerSelection}.png`;
+    });
+  });
+
+  // if (playerSelection === computerSelection) {
+  //   winner.textContent = "It is a tie";
+  //   return;
+  //   // return "Tie!";
+  // } else if (
+  //   (playerSelection === "rock" && computerSelection === "scissors") ||
+  //   (playerSelection === "paper" && computerSelection === "rock") ||
+  //   (playerSelection === "scissors" && computerSelection === "paper")
+  // ) {
+  //   playerScore++;
+  //   winner.textContent = "Player Wins";
+  //   return;
+  //   // return "Player Wins!" + " total: " + playerScore + " times";
+  // } else {
+  //   computerScore++;
+  //   winner.textContent = "Computer Wins";
+  //   return;
+  //   // return "Computer Wins!" + " total: " + computerScore + " times";
+  // }
 }
 
 // returns game winner who won most games.
@@ -85,6 +105,7 @@ function game() {
   //  for (let i = 0; i < 5; i++) {
   //     roundsPlayed++;
   //     console.log("round: " + roundsPlayed);
+  playRound();
   //     console.log(playRound()); // display the results of each round.
   //   }
   //   console.log(result()); // display the results of the winner at the end.
