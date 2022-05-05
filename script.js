@@ -5,6 +5,20 @@ let computerScore = 0;
 let roundsPlayed = 0;
 let gameWinner = "";
 
+// start the game intro
+const startGame = () => {
+  const playBtn = document.querySelector(".intro button");
+  const introScreen = document.querySelector(".intro");
+  const match = document.querySelector(".match");
+
+  playBtn.addEventListener("click", () => {
+    introScreen.classList.add("fadeOut");
+    match.classList.add("fadeIn");
+  });
+};
+
+startGame();
+
 // Your game is going to play against the computer, so begin with a function called computerPlay that will randomly return either ‘Rock’, ‘Paper’ or ‘Scissors’.
 function computerPlay() {
   return words[Math.floor(Math.random() * words.length)];
@@ -68,11 +82,11 @@ function result() {
 // Remember loops? This is a great opportunity to use one to play those five rounds:
 // At this point you should be using console.log() to display the results of each round and the winner at the end.
 function game() {
-  for (let i = 0; i < 5; i++) {
-    roundsPlayed++;
-    console.log("round: " + roundsPlayed);
-    console.log(playRound()); // display the results of each round.
-  }
-  console.log(result()); // display the results of the winner at the end.
+  //  for (let i = 0; i < 5; i++) {
+  //     roundsPlayed++;
+  //     console.log("round: " + roundsPlayed);
+  //     console.log(playRound()); // display the results of each round.
+  //   }
+  //   console.log(result()); // display the results of the winner at the end.
 }
 game();
