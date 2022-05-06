@@ -6,6 +6,22 @@ let cScore = 0;
 // let computerScore = 0;
 // let roundsPlayed = 0;
 // let gameWinner = "";
+const playerScore = document.querySelector(".player-score p");
+const computerScore = document.querySelector(".computer-score p");
+
+const winner = document.querySelector(".winner");
+
+const options = document.querySelectorAll(".options button");
+const playerHand = document.querySelector(".player-hand");
+const computerHand = document.querySelector(".computer-hand");
+const hands = document.querySelectorAll(".hands img");
+
+// disable buttons
+function disableButtons() {
+  options.forEach((elem) => {
+    elem.disabled = true;
+  });
+}
 
 // start the game intro
 const startGame = () => {
@@ -27,20 +43,20 @@ function computerPlay() {
 
 // Make your function’s playerSelection parameter case-insensitive (so users can input rock, ROCK, RocK or any other variation).
 // Use prompt() to get input from the user.
-function userPlay() {
-  // let input = prompt("Please type Rock, Paper or Scissors:");
-  // // case-insensitive input.
-  // input = input.toLowerCase(); // input to lover case
-  // let check = validateInput(input); // connect with validateInput function
-  // while (check == false) {
-  //   input = prompt(
-  //     "Type Rock, Paper or Scissors. Spelling needs to be exact, but capitilization doesnt matter"
-  //   );
-  //   input = input.toLowerCase();
-  //   check = validateInput(input); // check becomes true so while loop false brakes down.
-  // }
-  // return input;
-}
+// function userPlay() {
+// let input = prompt("Please type Rock, Paper or Scissors:");
+// // case-insensitive input.
+// input = input.toLowerCase(); // input to lover case
+// let check = validateInput(input); // connect with validateInput function
+// while (check == false) {
+//   input = prompt(
+//     "Type Rock, Paper or Scissors. Spelling needs to be exact, but capitilization doesnt matter"
+//   );
+//   input = input.toLowerCase();
+//   check = validateInput(input); // check becomes true so while loop false brakes down.
+// }
+// return input;
+// }
 // check if input text is same as global variable. The includes() method determines whether an array includes a certain element, returning true or false as appropriate.
 // function validateInput(word) {
 //   return words.includes(word);
@@ -48,14 +64,16 @@ function userPlay() {
 
 // Write a function that plays a single round of Rock Paper Scissors. The function should take two parameters - the playerSelection and computerSelection - and then return a string that declares the winner of the round like so: "You Lose! Paper beats Rock"
 // Important note: you want to return the results of this function call, not console.log() them. You’re going to use what you return later on, so let’s test this function by using console.log to see the results:
-function playRound(playerSelection, computerSelection) {
+// function playRound(playerSelection, computerSelection) {
+function playRound() {
   // playerSelection = userPlay();
   // computerSelection = computerPlay();
   // console.log("player: " + playerSelection, ", computer: " + computerSelection);
-  const options = document.querySelectorAll(".options button");
-  const playerHand = document.querySelector(".player-hand");
-  const computerHand = document.querySelector(".computer-hand");
-  const hands = document.querySelectorAll(".hands img");
+
+  // const options = document.querySelectorAll(".options button");
+  // const playerHand = document.querySelector(".player-hand");
+  // const computerHand = document.querySelector(".computer-hand");
+  // const hands = document.querySelectorAll(".hands img");
 
   // resets animation once it ends
   hands.forEach((hand) => {
@@ -85,15 +103,26 @@ function playRound(playerSelection, computerSelection) {
     });
   });
 
+  // Display the running score, and announce a winner of the game once one player reaches 5 points.
   const updateScore = () => {
-    const playerScore = document.querySelector(".player-score p");
-    const computerScore = document.querySelector(".computer-score p");
+    // const playerScore = document.querySelector(".player-score p");
+    // const computerScore = document.querySelector(".computer-score p");
     playerScore.textContent = pScore;
     computerScore.textContent = cScore;
+
+    if (pScore === 5) {
+      winner.textContent = "You won a game! Reload the page to play again";
+      disableButtons();
+      return;
+    } else if (cScore === 5) {
+      winner.textContent = "Computer won a game! Reload the page to play again";
+      disableButtons();
+      return;
+    }
   };
 
   const compareHands = (playerSelection, computerSelection) => {
-    const winner = document.querySelector(".winner");
+    // const winner = document.querySelector(".winner");
     if (playerSelection === computerSelection) {
       winner.textContent = "It is a tie";
       return;
@@ -139,8 +168,9 @@ function game() {
   //     roundsPlayed++;
   //     console.log("round: " + roundsPlayed);
   playRound();
+  // result();
   //     console.log(playRound()); // display the results of each round.
   //   }
-  //   console.log(result()); // display the results of the winner at the end.
+  // console.log(result()); // display the results of the winner at the end.
 }
 game();
