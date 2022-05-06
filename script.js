@@ -60,43 +60,48 @@ function playRound(playerSelection, computerSelection) {
       // console.log(this);
       computerSelection = computerPlay();
       console.log(computerSelection);
+      // change round winner text
+      compareHands(this.textContent, computerSelection);
       //Update Images
       playerHand.src = `./assets/${this.textContent}.png`;
       computerHand.src = `./assets/${computerSelection}.png`;
     });
   });
 
-  // if (playerSelection === computerSelection) {
-  //   winner.textContent = "It is a tie";
-  //   return;
-  //   // return "Tie!";
-  // } else if (
-  //   (playerSelection === "rock" && computerSelection === "scissors") ||
-  //   (playerSelection === "paper" && computerSelection === "rock") ||
-  //   (playerSelection === "scissors" && computerSelection === "paper")
-  // ) {
-  //   playerScore++;
-  //   winner.textContent = "Player Wins";
-  //   return;
-  //   // return "Player Wins!" + " total: " + playerScore + " times";
-  // } else {
-  //   computerScore++;
-  //   winner.textContent = "Computer Wins";
-  //   return;
-  //   // return "Computer Wins!" + " total: " + computerScore + " times";
-  // }
+  const compareHands = (playerSelection, computerSelection) => {
+    const winner = document.querySelector(".winner");
+    if (playerSelection === computerSelection) {
+      winner.textContent = "It is a tie";
+      return;
+      // return "Tie!";
+    } else if (
+      (playerSelection === "rock" && computerSelection === "scissors") ||
+      (playerSelection === "paper" && computerSelection === "rock") ||
+      (playerSelection === "scissors" && computerSelection === "paper")
+    ) {
+      playerScore++;
+      winner.textContent = "Player Wins";
+      return;
+      // return "Player Wins!" + " total: " + playerScore + " times";
+    } else {
+      computerScore++;
+      winner.textContent = "Computer Wins";
+      return;
+      // return "Computer Wins!" + " total: " + computerScore + " times";
+    }
+  };
 }
 
 // returns game winner who won most games.
-function result() {
-  if (playerScore > computerScore) {
-    return (gameWinner = "Game Winner: HUMAN!");
-  } else if (playerScore < computerScore) {
-    return (gameWinner = "Game Winner: COMPUTER!");
-  } else if ((playerScore = computerScore)) {
-    return (gameWinner = "Game Winner: NO ONE!");
-  }
-}
+// function result() {
+//   if (playerScore > computerScore) {
+//     return (gameWinner = "Game Winner: HUMAN!");
+//   } else if (playerScore < computerScore) {
+//     return (gameWinner = "Game Winner: COMPUTER!");
+//   } else if ((playerScore = computerScore)) {
+//     return (gameWinner = "Game Winner: NO ONE!");
+//   }
+// }
 
 // Write a NEW function called game(). Call the playRound function inside of this one to play a 5 round game that keeps score and reports a winner or loser at the end.
 // Remember loops? This is a great opportunity to use one to play those five rounds:
