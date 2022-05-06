@@ -55,6 +55,14 @@ function playRound(playerSelection, computerSelection) {
   const options = document.querySelectorAll(".options button");
   const playerHand = document.querySelector(".player-hand");
   const computerHand = document.querySelector(".computer-hand");
+  const hands = document.querySelectorAll(".hands img");
+
+  // resets animation once it ends
+  hands.forEach((hand) => {
+    hand.addEventListener("animationend", function () {
+      this.style.animation = "";
+    });
+  });
 
   // Create three buttons, one for each selection. Add an event listener to the buttons that call your playRound function with the correct playerSelection every time a button is clicked. (you can keep the console.logs for this step)
   options.forEach((option) => {
@@ -62,11 +70,18 @@ function playRound(playerSelection, computerSelection) {
       // console.log(this);
       computerSelection = computerPlay();
       console.log(computerSelection);
-      // change round winner text
-      compareHands(this.textContent, computerSelection);
-      //Update Images
-      playerHand.src = `./assets/${this.textContent}.png`;
-      computerHand.src = `./assets/${computerSelection}.png`;
+
+      // winner text and scoreboard updates after animation
+      setTimeout(() => {
+        // change round winner text
+        compareHands(this.textContent, computerSelection);
+        //Update Images
+        playerHand.src = `./assets/${this.textContent}.png`;
+        computerHand.src = `./assets/${computerSelection}.png`;
+      }, 2000);
+      //Animation
+      playerHand.style.animation = "shakePlayer 2s ease";
+      computerHand.style.animation = "shakeComputer 2s ease";
     });
   });
 
