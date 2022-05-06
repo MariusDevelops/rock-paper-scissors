@@ -1,9 +1,11 @@
 // global variables
 const words = ["rock", "paper", "scissors"];
-let playerScore = 0;
-let computerScore = 0;
-let roundsPlayed = 0;
-let gameWinner = "";
+let pScore = 0;
+let cScore = 0;
+// let playerScore = 0;
+// let computerScore = 0;
+// let roundsPlayed = 0;
+// let gameWinner = "";
 
 // start the game intro
 const startGame = () => {
@@ -68,6 +70,13 @@ function playRound(playerSelection, computerSelection) {
     });
   });
 
+  const updateScore = () => {
+    const playerScore = document.querySelector(".player-score p");
+    const computerScore = document.querySelector(".computer-score p");
+    playerScore.textContent = pScore;
+    computerScore.textContent = cScore;
+  };
+
   const compareHands = (playerSelection, computerSelection) => {
     const winner = document.querySelector(".winner");
     if (playerSelection === computerSelection) {
@@ -79,13 +88,17 @@ function playRound(playerSelection, computerSelection) {
       (playerSelection === "paper" && computerSelection === "rock") ||
       (playerSelection === "scissors" && computerSelection === "paper")
     ) {
-      playerScore++;
+      // playerScore++;
       winner.textContent = "Player Wins";
+      pScore++;
+      updateScore();
       return;
       // return "Player Wins!" + " total: " + playerScore + " times";
     } else {
-      computerScore++;
+      // computerScore++;
       winner.textContent = "Computer Wins";
+      cScore++;
+      updateScore();
       return;
       // return "Computer Wins!" + " total: " + computerScore + " times";
     }
