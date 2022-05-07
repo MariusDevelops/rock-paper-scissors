@@ -86,6 +86,13 @@ div.fadeIn {
   pointer-events: all;
 }
 
+#reset {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin: 20px auto 0px;
+}
+
 @keyframes shakePlayer {
   0% {
     transform: rotateY(180deg) translateY(0px);

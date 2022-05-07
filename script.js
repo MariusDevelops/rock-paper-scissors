@@ -16,10 +16,21 @@ const playerHand = document.querySelector(".player-hand");
 const computerHand = document.querySelector(".computer-hand");
 const hands = document.querySelectorAll(".hands img");
 
+const resetBtn = document.querySelector("#reset");
+// hide/show play again button
+resetBtn.style.display = "none";
+function showButton() {
+  resetBtn.style.display = "block";
+}
+
+//refresh page for new game
+resetBtn.addEventListener("click", () => location.reload());
+
 // disable buttons
 function disableButtons() {
   options.forEach((elem) => {
     elem.disabled = true;
+    elem.style.pointerEvents = "none";
   });
 }
 
@@ -111,11 +122,13 @@ function playRound() {
     computerScore.textContent = cScore;
 
     if (pScore === 5) {
-      winner.textContent = "You won a game! Reload the page to play again";
+      winner.textContent = "You won a game!";
+      showButton();
       disableButtons();
       return;
     } else if (cScore === 5) {
-      winner.textContent = "Computer won a game! Reload the page to play again";
+      winner.textContent = "Computer won a game!";
+      showButton();
       disableButtons();
       return;
     }
