@@ -152,3 +152,39 @@ div.fadeIn {
     transform: translateY(0px);
   }
 }
+
+@media only screen and (max-width: 650px) {
+  .game {
+    width: 100%;
+    min-height: 100vh;
+  }
+  .score h2 {
+    font-size: 25px;
+  }
+  .score p {
+    font-size: 20px;
+  }
+  .intro h1 {
+    font-size: 30px;
+    margin: 50px;
+    text-align: center;
+  }
+  .winner {
+    margin: 20px 0px;
+    font-size: 30px;
+  }
+  .player-hand,
+  .computer-hand {
+    max-width: 80%;
+    height: auto;
+  }
+  .options {
+    flex-direction: column;
+  }
+  .winner,
+  .hands,
+  .rock,
+  .paper {
+    margin-bottom: 20px;
+  }
+}
